@@ -1,0 +1,58 @@
+{
+  "kind": "collectionType",
+  "collectionName": "posts",
+  "info": {
+    "name": "Post",
+    "description": ""
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "draftAndPublish": true
+  },
+  "attributes": {
+    "Title": {
+      "type": "string"
+    },
+    "Content": {
+      "type": "richtext"
+    },
+    "Slug": {
+      "type": "string"
+    },
+    "User": {
+      "plugin": "users-permissions",
+      "model": "user",
+      "via": "posts"
+    },
+    "comments": {
+      "collection": "comment",
+      "via": "post"
+    },
+    "description": {
+      "type": "text",
+      "default": "This is a description that describes your post"
+    },
+    "cover": {
+      "model": "file",
+      "via": "related",
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos"
+      ],
+      "plugin": "upload",
+      "required": false
+    },
+    "tag": {
+      "type": "enumeration",
+      "enum": [
+        "Web_Development",
+        "Software_Engineering",
+        "Linux",
+        "Fitness",
+        "Personal"
+      ]
+    }
+  }
+}
